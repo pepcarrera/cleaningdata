@@ -91,3 +91,6 @@ names(xyData) <- gsub("\\(\\)", "", names(xyData))
 xyDataMelt <- melt(xyData, id=c(1,2), measure.vars=3:68)
 tidyData <- dcast(xyDataMelt, subject+activity ~variable, fun=mean)
 colnames(tidyData)[3:68] <- paste("Average_of",colnames(tidyData)[3:68], sep = "_")
+
+##Write Data to Text File
+write.table(tidyData, file="tidyData.txt", row.names=FALSE)
