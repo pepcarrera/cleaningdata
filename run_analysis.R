@@ -88,6 +88,7 @@ names(xyData) <- gsub(" ", "", names(xyData))
 names(xyData) <- gsub("\\(\\)", "", names(xyData))
 
 ##Begin creating of Tiday Data set 2, tidyData
+library(reshape2)
 xyDataMelt <- melt(xyData, id=c(1,2), measure.vars=3:68)
 tidyData <- dcast(xyDataMelt, subject+activity ~variable, fun=mean)
 colnames(tidyData)[3:68] <- paste("Average_of",colnames(tidyData)[3:68], sep = "_")
